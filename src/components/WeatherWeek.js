@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext} from 'react';
 import WeatherDay from './WeatherDay';
+import  { context } from '../hooks/Usecontext';
+
 
 
 function WeatherWeek(props) {
-  const [weatherData, setWeatherData] = useState([]);
-  
+  const {  weatherData,setWeatherData,location,setLocation} = useContext(context);
+
   useEffect(() => {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${props.location}&appid=dc76ac242a0cf767b4420812cadf2440&units=metric`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=dc76ac242a0cf767b4420812cadf2440&units=metric`;
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
@@ -26,11 +28,10 @@ function WeatherWeek(props) {
 
   
 
-
   return (
     <div>
       
-    <div className='block md:flex'>
+    <div className='block xl:flex'>
       {weatherData.map((item, index) => {
         return (
           <WeatherDay
@@ -42,6 +43,8 @@ function WeatherWeek(props) {
           );
         })}
     </div>
+
+
       
         </div>
   );
