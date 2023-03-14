@@ -42,7 +42,7 @@ function WeatherForm(props) {
   </form>
   <div className='lg:absolute lg:bottom-14 mr-4'>
     <h1 className='text-4xl font-extrabold text-gray-900 dark:text-white'>{location}</h1>
-  <img className="mt-4 rounded-lg min-h-60 w-72 text-center " src={photo} alt={props.name} />
+  <img className="mt-4 rounded-lg min-h-60 w-72 block mx-auto text-center " src={photo} alt={props.name} />
   </div>
 
     </div>
