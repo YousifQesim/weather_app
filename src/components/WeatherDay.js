@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState,useEffect,useContext } from 'react';
+import  { context } from '../hooks/Usecontext';
+import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faSun, faCloud, faCloudRain, faSnowflake, faBolt, faWind  } from '@fortawesome/free-solid-svg-icons'
 
 
 function WeatherDay(props) {
+  const {  weatherData,setWeatherData,location,setLocation} = useContext(context);
+  const [temperature, setTemperature] = useState(null);
+  const [unit, setUnit] = useState("Celsius");
   function getWeatherIcon(condition) {
     switch (condition.toLowerCase().split(" ").slice(1).join(" ")) {
   
@@ -29,18 +34,48 @@ function WeatherDay(props) {
         return null;
     }
   }
+  const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=dc76ac242a0cf767b4420812cadf2440&units=metric`;
+
+  useEffect(() => {
+    axios.get(API_URL)
+      .then(response => {
+        const temperatureValue = response.data.main.temp;
+        setTemperature(temperatureValue);
+      })
+      .catch(error => {
+        // handle the error
+      });
+  }, []);
+
+  function toggleUnit() {
+    if (unit === "Celsius") {
+      setUnit("Fahrenheit");
+      setTemperature(temperature * 1.8 + 32);
+    } else {
+      setUnit("Celsius");
+      setTemperature((temperature - 32) / 1.8);
+    }
+  }
   
   return (
-    <div className="border rounded-md p-4 mb-4 mx-5 h-60 w-60 ">
+    <div className="border rounded-md p-4 mb-4 mx-5 h-72 w-72 border-2  bg-white">
     <h2 className="font-medium mb-2">{props.day}</h2>
-    <p className="text-gray-700 mb-1">
-      Temperature: {props.temperature} degrees Celsius
-    </p>
     <p className="text-gray-700 mb-1">
       Conditions: {props.conditions}
     </p>
-    <div className='text-center mt-10'>
-
+    <p className="text-gray-700 mb-1 flex">
+      Temperature:{temperature ? (
+        <p>{temperature.toFixed(1)}°{unit}</p>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </p>
+    
+      <button onClick={toggleUnit} className=' text-center block mx-auto bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded my-5'>
+         Change to {unit === "Celsius" ? "Fahrenheit" : "Celsius"}
+      </button>
+    <div className='text-center '>
+ 
       {getWeatherIcon(props.conditions)}
       {getWeatherIcon2(props.conditions)}
     </div>

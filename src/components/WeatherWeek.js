@@ -31,7 +31,7 @@ function WeatherWeek(props) {
   return (
     <div>
       
-    <div className='block xl:flex'>
+    <div className='flex direc md:flex flex-wrap my-10 justify-center mx-auto '>
       {weatherData.map((item, index) => {
         return (
           <WeatherDay

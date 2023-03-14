@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import WeatherForm from '../src/components/WeatherForm';
 import WeatherWeek from '../src/components/WeatherWeek';
-import Weather from './components/Weather';
+
 import Usecontext from './hooks/Usecontext';
 function App(props) {
   const [location, setLocation] = useState('');
@@ -14,15 +14,15 @@ function App(props) {
   return (
     <Usecontext>
 
-    <div className="w-auto mx-auto h-screen px-4 py-8 block lg:flex border-2 border-red-700  ">
-      <div className=' text-center flex justify-center border-2 border-cyan-700'>
+    <div className="w-auto mx-auto h-screen px-4 py-8 block lg:flex   ">
+      <div className=' text-center flex justify-center '>
 
     <WeatherForm onSubmit={handleFormSubmit} />
       </div>
-    <div className='border-2 w-auto border-blue-700 flex items-center flex-wrap'>
+    <div className='w-auto flex items-center flex-wrap'>
 
     {location && <WeatherWeek location={location} />}
-    <Weather/>
+
     </div>
   </div>
     </Usecontext>
