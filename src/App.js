@@ -1,20 +1,9 @@
-// import React from 'react';
-// import Weather from '../src/components/Weather';
 
-// const App = () => {
-//   return (
-//     <div className="flex items-center justify-center h-screen">
-//       <Weather />
-//     </div>
-//   );
-// };
-
-// export default App;
 import React, { useState } from 'react';
 import WeatherForm from '../src/components/WeatherForm';
 import WeatherWeek from '../src/components/WeatherWeek';
-
-function App() {
+import Weather from './components/Weather';
+function App(props) {
   const [location, setLocation] = useState('');
 
   function handleFormSubmit(location) {
@@ -22,9 +11,16 @@ function App() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8">
+    <div className="w-auto mx-auto px-4 py-8 block border-2 border-red-700 ">
+      <div className=' text-center flex justify-center border-2 border-cyan-700'>
+
     <WeatherForm onSubmit={handleFormSubmit} />
+      </div>
+    <div className='border-2 border-blue-700 flex'>
+
     {location && <WeatherWeek location={location} />}
+    <Weather/>
+    </div>
   </div>
   );
 }
