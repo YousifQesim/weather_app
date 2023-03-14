@@ -34,7 +34,7 @@ function WeatherForm(props) {
   }
 
   return (
-    <div className='lg:relative block border-r-2 border-white'>
+    <div className='lg:relative block md:border-r-2 md:border-white'>
 
     <form onSubmit={handleSubmit} className="mt-14 mb-8 mr-4">
     <input placeholder='Enter Location: ' type="text" value={location} onChange={handleChange} className="placeholder:text-black w-full p-2 border rounded-md mb-4 border-2 border-white text-black" />
