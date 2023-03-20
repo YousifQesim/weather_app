@@ -3,10 +3,6 @@ import  { context } from '../hooks/Usecontext';
 
 function WeatherForm(props) {
   const {  weatherData,setWeatherData,location,setLocation} = useContext(context);
-
-
-  const API_KEY = 'dc76ac242a0cf767b4420812cadf2440';
-  const API_URL = `https://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}&units=metric&q=iraq`;
   const [photo, setPhoto] = useState(null);
   
   const fetchPhotoData = () => {
