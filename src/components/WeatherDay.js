@@ -43,7 +43,7 @@ function WeatherDay(props) {
     </p>
     <p className="text-gray-700 mb-3 flex">
       Temperature:
-    {props.temperature}
+    {props.temperature}°C
     </p>
     <p className="text-gray-700 mb-3">
       WindSpeed: {props.speed}Km/h
