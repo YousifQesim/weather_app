@@ -15,7 +15,7 @@ function WeatherWeek(props) {
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
-      console.log(data)
+  
         const dailyData = data.list.filter(item => item.dt_txt.includes('12:00:00'));
         const formattedData = dailyData.map(item => {
           return {
